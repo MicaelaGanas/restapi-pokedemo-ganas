@@ -2,9 +2,11 @@ import ClientWrapper from "./components/ClientWrapper";
 import ErrorBoundary from "./components/ErrorBoundary";
 import HeroBanner from "./components/HeroBanner";
 
+export const dynamic = "force-dynamic";
+
 async function fetchPokemon(limit = 151) {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`, {
-    next: { revalidate: 3600 } // Cache for 1 hour
+    cache: "no-store"
   });
   const list = await res.json();
 
