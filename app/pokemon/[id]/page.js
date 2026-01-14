@@ -99,35 +99,35 @@ export default async function PokemonDetailPage({ params }) {
 
   return (
     <main className="min-h-screen bg-gray-100">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         {/* Back Button */}
         <Link 
           href="/"
-          className="inline-flex items-center gap-2 retro-button px-6 py-3 bg-blue-500 text-white pixel-font text-xs uppercase hover:bg-blue-600 mb-6"
+          className="inline-flex items-center gap-1 sm:gap-2 retro-button px-3 sm:px-6 py-2 sm:py-3 bg-blue-500 text-white pixel-font text-[8px] sm:text-xs uppercase hover:bg-blue-600 mb-4 sm:mb-6"
         >
-          <span>←</span> Back to List
+          <span>←</span> <span className="hidden sm:inline">Back to</span> List
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column - Main Info */}
           <div>
             {/* Main Card */}
-            <div className="bg-white border-8 border-black pixel-shadow mb-6">
+            <div className="bg-white border-4 sm:border-8 border-black pixel-shadow mb-4 sm:mb-6">
               {/* Header */}
-              <div className={`${headerColor} border-b-5 border-black p-7 relative`}>
+              <div className={`${headerColor} border-b-3 sm:border-b-5 border-black p-4 sm:p-7 relative`}>
                 <FavoritesManager pokemonId={pokemon.id} pokemonName={pokemon.name} />
                 
                 {/* ID Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="pixel-font text-xs bg-black text-white px-3 py-2 border-4 border-white">
+                <div className="absolute top-2 left-2 sm:top-4 sm:left-4">
+                  <span className="pixel-font text-[8px] sm:text-xs bg-black text-white px-2 py-1 sm:px-3 sm:py-2 border-2 sm:border-4 border-white">
                     #{pokemon.id.toString().padStart(3, '0')}
                   </span>
                 </div>
               </div>
 
               {/* Pokémon Image */}
-              <div className="relative bg-gray-100 border-b-4 border-black p-12">
-                <div className="relative h-64 w-64 mx-auto">
+              <div className="relative bg-gray-100 border-b-2 sm:border-b-4 border-black p-4 sm:p-12">
+                <div className="relative h-40 w-40 sm:h-64 sm:w-64 mx-auto">
                   <Image 
                     src={pokemon.sprites.front_default} 
                     alt={pokemon.name}
@@ -139,25 +139,25 @@ export default async function PokemonDetailPage({ params }) {
               </div>
 
               {/* Card Content */}
-              <div className="p-6 bg-white">
+              <div className="p-3 sm:p-6 bg-white">
                 {/* Name */}
-                <h1 className="text-3xl pixel-font capitalize text-center mb-2 text-gray-900">
+                <h1 className="text-lg sm:text-2xl lg:text-3xl pixel-font capitalize text-center mb-2 text-gray-900">
                   {pokemon.name}
                 </h1>
 
                 {/* Genus */}
                 {genus && (
-                  <p className="text-center text-gray-600 pixel-font mb-4 uppercase text-xs">
+                  <p className="text-center text-gray-600 pixel-font mb-3 sm:mb-4 uppercase text-[8px] sm:text-xs">
                     {genus}
                   </p>
                 )}
 
                 {/* Types */}
-                <div className="flex gap-2 justify-center mb-6">
+                <div className="flex gap-2 justify-center mb-4 sm:mb-6">
                   {pokemon.types.map(({type}) => (
                     <span 
                       key={type.name}
-                      className={`${getTypeBgColor(type.name)} text-white px-6 py-3 pixel-font uppercase text-sm border-4 border-black pixel-shadow`}
+                      className={`${getTypeBgColor(type.name)} text-white px-3 py-2 sm:px-6 sm:py-3 pixel-font uppercase text-[8px] sm:text-sm border-2 sm:border-4 border-black pixel-shadow`}
                     >
                       {type.name}
                     </span>
@@ -166,37 +166,37 @@ export default async function PokemonDetailPage({ params }) {
 
                 {/* Description */}
                 {flavorText && (
-                  <div className="border-4 border-black bg-yellow-50 p-4 mb-6">
-                    <p className="text-xs pixel-font text-gray-800 leading-loose">
+                  <div className="border-2 sm:border-4 border-black bg-yellow-50 p-3 sm:p-4 mb-4 sm:mb-6">
+                    <p className="text-[8px] sm:text-xs pixel-font text-gray-800 leading-relaxed sm:leading-loose">
                       {flavorText}
                     </p>
                   </div>
                 )}
 
                 {/* Quick Stats */}
-                <div className="grid grid-cols-3 gap-3 mb-6">
-                  <div className="border-4 border-black p-4 bg-yellow-100 text-center">
-                    <div className="pixel-font text-gray-700 text-xs uppercase leading-tight mb-2">Height</div>
-                    <div className="text-lg pixel-font text-gray-900">{pokemon.height / 10}m</div>
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <div className="border-2 sm:border-4 border-black p-2 sm:p-4 bg-yellow-100 text-center">
+                    <div className="pixel-font text-gray-700 text-[7px] sm:text-xs uppercase leading-tight mb-1 sm:mb-2">Height</div>
+                    <div className="text-xs sm:text-lg pixel-font text-gray-900">{pokemon.height / 10}m</div>
                   </div>
-                  <div className="border-4 border-black p-4 bg-blue-100 text-center">
-                    <div className="pixel-font text-gray-700 text-xs uppercase leading-tight mb-2">Weight</div>
-                    <div className="text-lg pixel-font text-gray-900">{pokemon.weight / 10}kg</div>
+                  <div className="border-2 sm:border-4 border-black p-2 sm:p-4 bg-blue-100 text-center">
+                    <div className="pixel-font text-gray-700 text-[7px] sm:text-xs uppercase leading-tight mb-1 sm:mb-2">Weight</div>
+                    <div className="text-xs sm:text-lg pixel-font text-gray-900">{pokemon.weight / 10}kg</div>
                   </div>
-                  <div className="border-4 border-black p-4 bg-red-100 text-center">
-                    <div className="pixel-font text-gray-700 text-xs uppercase leading-tight mb-2">Total</div>
-                    <div className="text-lg pixel-font text-gray-900">{totalStats}</div>
+                  <div className="border-2 sm:border-4 border-black p-2 sm:p-4 bg-red-100 text-center">
+                    <div className="pixel-font text-gray-700 text-[7px] sm:text-xs uppercase leading-tight mb-1 sm:mb-2">Total</div>
+                    <div className="text-xs sm:text-lg pixel-font text-gray-900">{totalStats}</div>
                   </div>
                 </div>
 
                 {/* Abilities */}
-                <div className="border-4 border-black bg-gray-50 p-4">
-                  <div className="text-xs pixel-font text-gray-600 uppercase mb-3">⭐ Abilities</div>
+                <div className="border-2 sm:border-4 border-black bg-gray-50 p-3 sm:p-4">
+                  <div className="text-[8px] sm:text-xs pixel-font text-gray-600 uppercase mb-2 sm:mb-3">⭐ Abilities</div>
                   <div className="flex flex-wrap gap-2">
                     {pokemon.abilities.map(({ability, is_hidden}) => (
                       <span 
                         key={ability.name}
-                        className={`${is_hidden ? 'bg-purple-400' : 'bg-yellow-400'} text-black px-4 py-2 text-xs pixel-font border-3 border-black capitalize`}
+                        className={`${is_hidden ? 'bg-purple-400' : 'bg-yellow-400'} text-black px-2 py-1 sm:px-4 sm:py-2 text-[8px] sm:text-xs pixel-font border-2 sm:border-3 border-black capitalize`}
                       >
                         {ability.name.replace('-', ' ')}
                         {is_hidden && " (Hidden)"}
@@ -208,11 +208,11 @@ export default async function PokemonDetailPage({ params }) {
             </div>
 
             {/* Type Effectiveness */}
-            <div className="border-8 border-black bg-white pixel-shadow">
-              <div className="bg-gray-800 border-b-4 border-black p-4">
-                <h2 className="pixel-font text-lg text-white">TYPE EFFECTIVENESS</h2>
+            <div className="border-4 sm:border-8 border-black bg-white pixel-shadow">
+              <div className="bg-gray-800 border-b-2 sm:border-b-4 border-black p-3 sm:p-4">
+                <h2 className="pixel-font text-xs sm:text-lg text-white">TYPE EFFECTIVENESS</h2>
               </div>
-              <div className="p-6">
+              <div className="p-3 sm:p-6">
                 <TypeEffectiveness types={pokemon.types.map(t => t.type.name)} />
               </div>
             </div>
@@ -221,54 +221,54 @@ export default async function PokemonDetailPage({ params }) {
           {/* Right Column - Stats & Chart */}
           <div>
             {/* Stats Chart */}
-            <div className="mb-6">
+            <div className="mb-4 sm:mb-6">
               <StatsChart pokemon={pokemon} />
             </div>
 
             {/* Detailed Stats */}
-            <div className="border-8 border-black bg-white pixel-shadow mb-6">
-              <div className="bg-red-500 border-b-4 border-black p-4">
-                <h2 className="pixel-font text-lg text-white">BASE STATS</h2>
+            <div className="border-4 sm:border-8 border-black bg-white pixel-shadow mb-4 sm:mb-6">
+              <div className="bg-red-500 border-b-2 sm:border-b-4 border-black p-3 sm:p-4">
+                <h2 className="pixel-font text-xs sm:text-lg text-white">BASE STATS</h2>
               </div>
-              <div className="p-6 space-y-4">
+              <div className="p-3 sm:p-6 space-y-3 sm:space-y-4">
                 {pokemon.stats.map((stat) => {
                   const percentage = (stat.base_stat / 255) * 100;
                   return (
                     <div key={stat.stat.name}>
-                      <div className="flex justify-between mb-2">
-                        <span className="pixel-font text-xs uppercase text-gray-700">
+                      <div className="flex justify-between mb-1 sm:mb-2">
+                        <span className="pixel-font text-[7px] sm:text-xs uppercase text-gray-700">
                           {stat.stat.name.replace('-', ' ')}
                         </span>
-                        <span className="pixel-font text-sm text-gray-900">{stat.base_stat}</span>
+                        <span className="pixel-font text-[10px] sm:text-sm text-gray-900">{stat.base_stat}</span>
                       </div>
-                      <div className="h-6 bg-white border-3 border-black">
+                      <div className="h-4 sm:h-6 bg-white border-2 sm:border-3 border-black">
                         <div 
-                          className={`h-full ${getStatColor(stat.stat.name)} border-r-3 border-black transition-all duration-500`}
+                          className={`h-full ${getStatColor(stat.stat.name)} border-r-2 sm:border-r-3 border-black transition-all duration-500`}
                           style={{ width: `${percentage}%` }}
                         ></div>
                       </div>
                     </div>
                   );
                 })}
-                <div className="pt-4 border-t-4 border-dashed border-gray-300">
+                <div className="pt-3 sm:pt-4 border-t-2 sm:border-t-4 border-dashed border-gray-300">
                   <div className="flex justify-between">
-                    <span className="pixel-font text-xs uppercase text-gray-700">Total Stats</span>
-                    <span className="pixel-font text-lg text-red-600">{totalStats}</span>
+                    <span className="pixel-font text-[8px] sm:text-xs uppercase text-gray-700">Total Stats</span>
+                    <span className="pixel-font text-sm sm:text-lg text-red-600">{totalStats}</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Sprite Gallery */}
-            <div className="border-8 border-black bg-white pixel-shadow">
-              <div className="bg-purple-500 border-b-4 border-black p-4">
-                <h2 className="pixel-font text-lg text-white">SPRITE GALLERY</h2>
+            <div className="border-4 sm:border-8 border-black bg-white pixel-shadow">
+              <div className="bg-purple-500 border-b-2 sm:border-b-4 border-black p-3 sm:p-4">
+                <h2 className="pixel-font text-xs sm:text-lg text-white">SPRITE GALLERY</h2>
               </div>
-              <div className="p-6 grid grid-cols-2 gap-4">
+              <div className="p-3 sm:p-6 grid grid-cols-2 gap-2 sm:gap-4">
                 {pokemon.sprites.front_default && (
-                  <div className="border-4 border-black bg-gray-100 p-4">
-                    <p className="text-xs pixel-font text-center mb-2 uppercase">Front</p>
-                    <div className="relative h-32 w-32 mx-auto">
+                  <div className="border-2 sm:border-4 border-black bg-gray-100 p-2 sm:p-4">
+                    <p className="text-[7px] sm:text-xs pixel-font text-center mb-1 sm:mb-2 uppercase">Front</p>
+                    <div className="relative h-20 w-20 sm:h-32 sm:w-32 mx-auto">
                       <Image 
                         src={pokemon.sprites.front_default}
                         alt="Front"
@@ -280,9 +280,9 @@ export default async function PokemonDetailPage({ params }) {
                   </div>
                 )}
                 {pokemon.sprites.back_default && (
-                  <div className="border-4 border-black bg-gray-100 p-4">
-                    <p className="text-xs pixel-font text-center mb-2 uppercase">Back</p>
-                    <div className="relative h-32 w-32 mx-auto">
+                  <div className="border-2 sm:border-4 border-black bg-gray-100 p-2 sm:p-4">
+                    <p className="text-[7px] sm:text-xs pixel-font text-center mb-1 sm:mb-2 uppercase">Back</p>
+                    <div className="relative h-20 w-20 sm:h-32 sm:w-32 mx-auto">
                       <Image 
                         src={pokemon.sprites.back_default}
                         alt="Back"
@@ -294,9 +294,9 @@ export default async function PokemonDetailPage({ params }) {
                   </div>
                 )}
                 {pokemon.sprites.front_shiny && (
-                  <div className="border-4 border-black bg-yellow-100 p-4">
-                    <p className="text-xs pixel-font text-center mb-2 uppercase">Shiny ✨</p>
-                    <div className="relative h-32 w-32 mx-auto">
+                  <div className="border-2 sm:border-4 border-black bg-yellow-100 p-2 sm:p-4">
+                    <p className="text-[7px] sm:text-xs pixel-font text-center mb-1 sm:mb-2 uppercase">Shiny ✨</p>
+                    <div className="relative h-20 w-20 sm:h-32 sm:w-32 mx-auto">
                       <Image 
                         src={pokemon.sprites.front_shiny}
                         alt="Shiny"
@@ -308,9 +308,9 @@ export default async function PokemonDetailPage({ params }) {
                   </div>
                 )}
                 {pokemon.sprites.back_shiny && (
-                  <div className="border-4 border-black bg-yellow-100 p-4">
-                    <p className="text-xs pixel-font text-center mb-2 uppercase">Shiny Back ✨</p>
-                    <div className="relative h-32 w-32 mx-auto">
+                  <div className="border-2 sm:border-4 border-black bg-yellow-100 p-2 sm:p-4">
+                    <p className="text-[7px] sm:text-xs pixel-font text-center mb-1 sm:mb-2 uppercase">Shiny Back ✨</p>
+                    <div className="relative h-20 w-20 sm:h-32 sm:w-32 mx-auto">
                       <Image 
                         src={pokemon.sprites.back_shiny}
                         alt="Shiny Back"
