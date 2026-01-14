@@ -36,7 +36,7 @@ export default function FavoritesPage() {
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-12 bg-red-500 border-8 border-black pixel-shadow p-8 relative overflow-hidden">
+        <div className="mb-12 bg-red-500 border-8 border-black pixel-shadow p-4 md:p-8 relative overflow-hidden">
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="grid grid-cols-8 gap-8 p-8">
@@ -47,8 +47,8 @@ export default function FavoritesPage() {
           </div>
 
           <div className="relative z-10">
-            <h1 className="pixel-font text-4xl md:text-5xl mb-6 text-yellow-400 drop-shadow-[6px_6px_0_rgba(0,0,0,1)] text-center md:text-left leading-tight">
-              ❤️ MY FAVORITES
+            <h1 className="pixel-font text-2xl sm:text-3xl md:text-5xl mb-4 md:mb-6 text-yellow-400 drop-shadow-[4px_4px_0_rgba(0,0,0,1)] md:drop-shadow-[6px_6px_0_rgba(0,0,0,1)] text-center md:text-left leading-tight break-words">
+               MY FAVORITES
             </h1>
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-6 text-center md:text-left">
               <p className="text-base md:text-xl font-bold text-white drop-shadow-[4px_4px_0_rgba(0,0,0,1)] leading-snug">
@@ -66,10 +66,10 @@ export default function FavoritesPage() {
         {loading ? (
           <LoadingSkeleton count={favorites.length} />
         ) : favorites.length === 0 ? (
-          <div className="text-center bg-yellow-400 border-8 border-black pixel-shadow p-16">
-            <p className="pixel-font text-4xl text-gray-900 mb-6">❌ NO FAVORITES</p>
-            <p className="text-xl font-bold text-gray-900 mb-8">Go back to home and add some Pokémon to your favorites!</p>
-            <a href="/" className="retro-button px-8 py-4 bg-red-500 text-white font-bold uppercase text-lg hover:bg-red-600">
+          <div className="text-center bg-yellow-400 border-8 border-black pixel-shadow p-6 md:p-16">
+            <p className="pixel-font text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-4 md:mb-6 leading-tight break-words"> NO FAVORITES</p>
+            <p className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-6 md:mb-8 leading-snug">Go back to home and add some Pokémon to your favorites!</p>
+            <a href="/" className="retro-button px-6 py-3 md:px-8 md:py-4 bg-red-500 text-white font-bold uppercase text-base md:text-lg hover:bg-red-600">
               ⬅️ Go Home
             </a>
           </div>

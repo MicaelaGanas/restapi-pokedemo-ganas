@@ -88,11 +88,11 @@ export default function PokemonQuiz() {
 
   if (!gameStarted) {
     return (
-      <div className="bg-white border-8 border-black pixel-shadow p-8 text-center">
-        <h2 className="pixel-font text-4xl mb-6 text-gray-900">
+      <div className="bg-white border-8 border-black pixel-shadow p-4 md:p-8 text-center">
+        <h2 className="pixel-font text-2xl sm:text-3xl md:text-4xl mb-4 md:mb-6 text-gray-900 leading-tight break-words">
           🎮 WHO'S THAT
         </h2>
-        <h2 className="pixel-font text-4xl mb-8 text-red-600">
+        <h2 className="pixel-font text-2xl sm:text-3xl md:text-4xl mb-6 md:mb-8 text-red-600 leading-tight break-words">
           POKEMON?
         </h2>
         <p className="font-bold text-lg text-gray-700 mb-8">
@@ -109,13 +109,13 @@ export default function PokemonQuiz() {
   }
 
   return (
-    <div className="bg-white border-8 border-black pixel-shadow p-8">
-      <div className="flex justify-between items-center mb-8 pb-4 border-b-4 border-black">
-        <h2 className="pixel-font text-3xl text-gray-900">
+    <div className="bg-white border-8 border-black pixel-shadow p-4 md:p-8">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 md:mb-8 pb-4 border-b-4 border-black gap-2">
+        <h2 className="pixel-font text-2xl sm:text-3xl text-gray-900 text-center md:text-left leading-tight">
           🎮 QUIZ
         </h2>
-        <div className="text-center">
-          <div className="pixel-font text-3xl text-red-600">
+        <div className="text-center md:text-right">
+          <div className="pixel-font text-2xl sm:text-3xl text-red-600">
             {score} / {total}
           </div>
           <div className="font-bold text-gray-700 mt-1">

@@ -57,8 +57,8 @@ export default function PokemonComparison() {
   };
 
   return (
-    <div className="bg-white border-8 border-black pixel-shadow p-8">
-      <h2 className="pixel-font text-4xl mb-8 text-gray-900">
+    <div className="bg-white border-8 border-black pixel-shadow p-4 md:p-8">
+      <h2 className="pixel-font text-2xl sm:text-3xl md:text-4xl mb-4 md:mb-8 text-gray-900 text-center md:text-left leading-tight break-words">
         ⚔️ POKEMON VS
       </h2>
 
