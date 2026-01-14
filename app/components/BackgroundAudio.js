@@ -30,4 +30,6 @@ export default function BackgroundAudio() {
       aria-hidden="true"
     />
   );
+
+  
 }
