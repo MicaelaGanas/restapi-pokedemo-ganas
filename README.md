@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pokémon Dashboard
 
-## Getting Started
+Interactive Pokédex built with Next.js App Router, Tailwind CSS v4, and Chart.js. Explore 151 Pokémon with search, filters, stats visualizations, comparisons, favorites, and a quiz.
 
-First, run the development server:
+## ✨ Features
+- **Live Pokédex grid** with search, type filter, min-stats filter, sorting, favorites-only toggle, and incremental “Load More” ([`ClientWrapper`](app/components/ClientWrapper.js)).
+- **Favorites system** persisted in `localStorage` via [`FavoritesManager`](app/components/FavoritesManager.js).
+- **Detail pages** with sprites, flavor text, abilities, stats bars, radar chart, and type effectiveness ([`PokemonCard`](app/components/PokemonCard.js), [`TypeEffectiveness`](app/components/TypeEffectiveness.js), [`StatsChart`](app/components/StatsChart.js), [`app/pokemon/[id]/page.js`](app/pokemon/[id]/page.js)).
+- **Comparison tool** for two Pokémon ([`PokemonComparison`](app/components/PokemonComparison.js), [`app/compare/page.js`](app/compare/page.js)).
+- **Quiz mini-game** “Who’s That Pokémon?” with score/auto-advance ([`PokemonQuiz`](app/components/PokemonQuiz.js), [`app/quiz/page.js`](app/quiz/page.js)).
+- **Hero landing + audio + navbar** with retro styling and dark-mode-ready globals ([`HeroBanner`](app/components/HeroBanner.js), [`BackgroundAudio`](app/components/BackgroundAudio.js), [`Navbar`](app/components/Navbar.js), [`app/page.js`](app/page.js), [`app/globals.css`](app/globals.css)).
+- **Loading states & error boundary** ([`LoadingSkeleton`](app/components/LoadingSkeleton.js), [`app/loading.js`](app/loading.js), [`ErrorBoundary`](app/components/ErrorBoundary.js)).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🏗️ Project Structure
+- Entry layout: [`app/layout.js`](app/layout.js)  
+- Home page & data fetch: [`app/page.js`](app/page.js) with [`fetchPokemon`](app/page.js) (uses PokéAPI, `cache: "no-store"`).  
+- Dynamic details: [`app/pokemon/[id]/page.js`](app/pokemon/[id]/page.js)  
+- Compare: [`app/compare/page.js`](app/compare/page.js)  
+- Quiz: [`app/quiz/page.js`](app/quiz/page.js)  
+- Favorites: [`app/favorites/page.js`](app/favorites/page.js)  
+- About: [`app/about/page.js`](app/about/page.js)  
+
+## 🚀 Getting Started
+Prerequisites: Node 18+
+
+Install deps:
+```sh
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run dev server:
+```sh
+npm run dev
+```
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Build:
+```sh
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Production start:
+```sh
+npm run start
+```
 
-## Learn More
+## ⚙️ Tech Stack
+- Next.js 16 App Router ([`next.config.mjs`](next.config.mjs))
+- React 19
+- Tailwind CSS v4 ([`postcss.config.mjs`](postcss.config.mjs), [`app/globals.css`](app/globals.css))
+- Chart.js + react-chartjs-2 ([`StatsChart`](app/components/StatsChart.js))
+- ESLint core-web-vitals ([`eslint.config.mjs`](eslint.config.mjs))
 
-To learn more about Next.js, take a look at the following resources:
+## 📡 Data
+- Pokémon data from PokéAPI (`https://pokeapi.co/api/v2/pokemon` + `pokemon-species`). Fetching happens server-side in [`fetchPokemon`](app/page.js) and per-ID in [`app/pokemon/[id]/page.js`](app/pokemon/[id]/page.js) with `cache: "no-store"`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ♿ UX Notes
+- Smooth scroll, focus-visible outlines, retro pixel styling, scrollbar theming ([`app/globals.css`](app/globals.css)).
+- Audio toggle dispatches `bg-music-toggle` custom event ([`Navbar`](app/components/Navbar.js), [`BackgroundAudio`](app/components/BackgroundAudio.js)).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤝 Contributing
+1) Fork and branch.  
+2) `npm run dev` to develop.  
+3) Add tests/linters where applicable, then open a PR.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 License
+MIT (add a LICENSE file if distributing).
