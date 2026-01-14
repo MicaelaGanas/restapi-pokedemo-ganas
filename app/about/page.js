@@ -5,87 +5,52 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto p-6">
-      <div className="max-w-3xl mx-auto p-8 bg-white dark:bg-gray-800 rounded-lg shadow-xl">
-        <h1 className="text-4xl font-bold mb-6 text-gray-800 dark:text-white">
-          About This Project
-        </h1>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="container mx-auto max-w-3xl">
+        <div className="bg-white border-8 border-black pixel-shadow p-8">
+          <h1 className="pixel-font text-4xl mb-8 text-gray-900">
+            About This Project
+          </h1>
 
-        <div className="prose dark:prose-invert max-w-none">
-          <p className="mb-4 text-gray-700 dark:text-gray-300">
-            This website was created as a performance task for the Web Programming course. Its main goal
-            is to demonstrate how to fetch and render API data using{" "}
-            <span className="font-semibold text-blue-600 dark:text-blue-400">Next.js App Router</span>{" "}
-            with Tailwind CSS.
-          </p>
+          <div className="space-y-6 text-gray-900">
+            <div className="border-l-8 border-red-600 bg-yellow-50 p-6">
+              <p className="text-lg font-bold mb-2">
+                This website was created as a performance task for Web Programming. It demonstrates
+                how to fetch and render API data using <span className="text-red-600">Next.js App Router</span> with Tailwind CSS.
+              </p>
+            </div>
 
-          <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-800 dark:text-white">
-            ✨ Features Implemented
-          </h2>
-          <ul className="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-            <li>🔍 Advanced search and filtering (by name, type, stats)</li>
-            <li>🌙 Dark mode toggle with localStorage persistence</li>
-            <li>📊 Interactive stats visualization with Chart.js</li>
-            <li>❤️ Favorites system with localStorage</li>
-            <li>⚔️ Pokémon comparison tool</li>
-            <li>🎲 Random Pokémon generator</li>
-            <li>📱 Fully responsive design</li>
-            <li>🎨 Type effectiveness chart</li>
-            <li>🔄 Pagination with "Load More" functionality</li>
-            <li>⚡ Loading skeletons for better UX</li>
-            <li>🛡️ Error boundaries for graceful error handling</li>
-            <li>♿ Accessibility improvements (ARIA labels, keyboard navigation)</li>
-          </ul>
+            <div>
+              <h2 className="pixel-font text-2xl mb-4 text-gray-900">
+                ✨ Features
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="border-4 border-black bg-yellow-100 p-3 font-bold">🔍 Advanced Search</div>
+                <div className="border-4 border-black bg-blue-100 p-3 font-bold">❤️ Favorites System</div>
+                <div className="border-4 border-black bg-purple-100 p-3 font-bold">📊 Stats Charts</div>
+                <div className="border-4 border-black bg-green-100 p-3 font-bold">⚔️ Comparison Tool</div>
+                <div className="border-4 border-black bg-orange-100 p-3 font-bold">🎮 Quiz Game</div>
+                <div className="border-4 border-black bg-pink-100 p-3 font-bold">📱 Responsive Design</div>
+              </div>
+            </div>
 
-          <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-800 dark:text-white">
-            🎮 Pokémon Overview
-          </h2>
-          <p className="mb-4 text-gray-700 dark:text-gray-300">
-            Pokémon (short for Pocket Monsters) is a popular game franchise developed by Nintendo. It
-            features fictional creatures that players can collect, train, and battle. Since its debut in
-            1996, Pokémon has expanded into trading cards, animation, and media worldwide.
-          </p>
+            <div className="border-4 border-black bg-blue-100 p-6">
+              <h2 className="pixel-font text-2xl mb-4 text-gray-900">🎮 Pokémon</h2>
+              <p className="font-bold text-gray-800">
+                Pokémon (Pocket Monsters) is a popular franchise developed by Nintendo. It features fictional creatures that players can collect, train, and battle since its debut in 1996.
+              </p>
+            </div>
 
-          <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-800 dark:text-white">
-            🔌 API Source
-          </h2>
-          <p className="mb-4 text-gray-700 dark:text-gray-300">
-            All Pokémon information displayed in this application comes from the open REST API:
-            <br />
-            <a
-              href="https://pokeapi.co/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300 font-semibold"
-            >
-              https://pokeapi.co/
-            </a>
-          </p>
-
-          <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-800 dark:text-white">
-            ⚠️ Important Note
-          </h2>
-          <p className="mb-4 text-gray-700 dark:text-gray-300">
-            This website is intended solely for educational demonstration. No commercial usage is
-            intended, and all Pokémon data & assets belong to their respective copyright owners.
-          </p>
-
-          <div className="mt-8 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
-              🛠️ Technologies Used
-            </h3>
-            <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
-              <li>Next.js 16.1 (App Router)</li>
-              <li>React 19</li>
-              <li>Tailwind CSS 4</li>
-              <li>Chart.js & react-chartjs-2</li>
-              <li>PokéAPI (REST API)</li>
-            </ul>
+            <div className="border-4 border-black bg-red-100 p-6">
+              <h2 className="pixel-font text-2xl mb-4 text-gray-900">🔌 API Source</h2>
+              <p className="font-bold text-gray-800 mb-2">
+                Data is fetched from the free and publicly available
+              </p>
+              <a href="https://pokeapi.co/" className="retro-button bg-red-500 text-white px-4 py-2 inline-block font-bold">
+                PokéAPI
+              </a>
+            </div>
           </div>
-
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-8 text-center">
-            © {new Date().getFullYear()} Web Programming — Educational Demo Application
-          </p>
         </div>
       </div>
     </div>

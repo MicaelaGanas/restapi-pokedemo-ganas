@@ -30,25 +30,25 @@ export default function PokemonComparison() {
     const percentage2 = (stat2 / max) * 100;
 
     return (
-      <div className="mb-3">
-        <div className="text-sm font-medium mb-1 capitalize text-gray-700 dark:text-gray-300">
+      <div className="mb-4">
+        <div className="font-bold mb-1 capitalize text-gray-900 uppercase text-sm">
           {name.replace("-", " ")}
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-12 text-right text-sm font-semibold text-blue-600 dark:text-blue-400">
+          <span className="w-12 text-right text-sm font-bold text-blue-600">
             {stat1}
           </span>
-          <div className="flex-1 flex gap-1 h-6">
+          <div className="flex-1 flex gap-0 h-6 border-2 border-black">
             <div
-              className="bg-blue-500 rounded-l transition-all"
+              className="bg-blue-500 transition-all"
               style={{ width: `${percentage1}%` }}
             ></div>
             <div
-              className="bg-red-500 rounded-r transition-all"
+              className="bg-red-500 transition-all"
               style={{ width: `${percentage2}%` }}
             ></div>
           </div>
-          <span className="w-12 text-left text-sm font-semibold text-red-600 dark:text-red-400">
+          <span className="w-12 text-left text-sm font-bold text-red-600">
             {stat2}
           </span>
         </div>
@@ -57,36 +57,36 @@ export default function PokemonComparison() {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
-        ⚔️ Pokémon Comparison
+    <div className="bg-white border-8 border-black pixel-shadow p-8">
+      <h2 className="pixel-font text-4xl mb-8 text-gray-900">
+        ⚔️ POKEMON VS
       </h2>
 
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div>
-          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-            Pokémon 1 (Name or ID)
+          <label className="block font-bold mb-2 text-gray-900 uppercase">
+            Pokémon 1
           </label>
           <input
             type="text"
             value={pokemon1Id}
             onChange={(e) => setPokemon1Id(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && fetchPokemon(pokemon1Id, setPokemon1)}
-            placeholder="e.g., pikachu or 25"
-            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+            placeholder="e.g., pikachu"
+            className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-yellow-400 font-bold"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-            Pokémon 2 (Name or ID)
+          <label className="block font-bold mb-2 text-gray-900 uppercase">
+            Pokémon 2
           </label>
           <input
             type="text"
             value={pokemon2Id}
             onChange={(e) => setPokemon2Id(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && fetchPokemon(pokemon2Id, setPokemon2)}
-            placeholder="e.g., charizard or 6"
-            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+            placeholder="e.g., charizard"
+            className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-yellow-400 font-bold"
           />
         </div>
       </div>
@@ -97,47 +97,47 @@ export default function PokemonComparison() {
           fetchPokemon(pokemon2Id, setPokemon2);
         }}
         disabled={!pokemon1Id || !pokemon2Id || loading}
-        className="w-full mb-6 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors"
+        className="retro-button w-full mb-6 px-4 py-3 bg-red-500 hover:bg-red-600 disabled:bg-gray-400 text-white font-bold uppercase"
       >
-        {loading ? "Loading..." : "Compare"}
+        {loading ? "Loading..." : "⚔️ COMPARE"}
       </button>
 
       {pokemon1 && pokemon2 && (
         <div>
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="text-center">
+          <div className="grid grid-cols-2 gap-4 mb-8 pb-8 border-b-4 border-black">
+            <div className="text-center border-4 border-black p-4 bg-yellow-50">
               <div className="relative h-32 w-32 mx-auto mb-2">
                 <Image
                   src={pokemon1.sprites.front_default}
                   alt={pokemon1.name}
                   fill
-                  className="object-contain"
+                  className="object-contain pixelated"
                   unoptimized
                 />
               </div>
-              <h3 className="text-xl font-bold capitalize text-gray-800 dark:text-white">
+              <h3 className="text-xl font-bold uppercase text-gray-900">
                 {pokemon1.name}
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">#{pokemon1.id}</p>
+              <p className="font-bold text-gray-700">#{pokemon1.id.toString().padStart(3, '0')}</p>
             </div>
-            <div className="text-center">
+            <div className="text-center border-4 border-black p-4 bg-blue-50">
               <div className="relative h-32 w-32 mx-auto mb-2">
                 <Image
                   src={pokemon2.sprites.front_default}
                   alt={pokemon2.name}
                   fill
-                  className="object-contain"
+                  className="object-contain pixelated"
                   unoptimized
                 />
               </div>
-              <h3 className="text-xl font-bold capitalize text-gray-800 dark:text-white">
+              <h3 className="text-xl font-bold uppercase text-gray-900">
                 {pokemon2.name}
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">#{pokemon2.id}</p>
+              <p className="font-bold text-gray-700">#{pokemon2.id.toString().padStart(3, '0')}</p>
             </div>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2 mb-8">
             {pokemon1.stats.map((stat, i) => (
               <StatComparison
                 key={stat.stat.name}
@@ -148,31 +148,29 @@ export default function PokemonComparison() {
             ))}
           </div>
 
-          <div className="mt-6 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg">
-            <h4 className="font-semibold mb-2 text-gray-800 dark:text-white">Summary</h4>
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <p className="text-gray-700 dark:text-gray-300">
-                  <span className="font-medium">Total Stats:</span>{" "}
-                  {pokemon1.stats.reduce((sum, s) => sum + s.base_stat, 0)}
+          <div className="border-4 border-black bg-yellow-50 p-4">
+            <h4 className="pixel-font text-lg mb-4 text-gray-900">SUMMARY</h4>
+            <div className="grid grid-cols-2 gap-4 text-sm font-bold">
+              <div className="border-2 border-black p-3">
+                <p className="text-gray-900 mb-1">
+                  Total: {pokemon1.stats.reduce((sum, s) => sum + s.base_stat, 0)}
                 </p>
-                <p className="text-gray-700 dark:text-gray-300">
-                  <span className="font-medium">Height:</span> {(pokemon1.height / 10).toFixed(1)}m
+                <p className="text-gray-900 mb-1">
+                  Height: {(pokemon1.height / 10).toFixed(1)}m
                 </p>
-                <p className="text-gray-700 dark:text-gray-300">
-                  <span className="font-medium">Weight:</span> {(pokemon1.weight / 10).toFixed(1)}kg
+                <p className="text-gray-900">
+                  Weight: {(pokemon1.weight / 10).toFixed(1)}kg
                 </p>
               </div>
-              <div>
-                <p className="text-gray-700 dark:text-gray-300">
-                  <span className="font-medium">Total Stats:</span>{" "}
-                  {pokemon2.stats.reduce((sum, s) => sum + s.base_stat, 0)}
+              <div className="border-2 border-black p-3">
+                <p className="text-gray-900 mb-1">
+                  Total: {pokemon2.stats.reduce((sum, s) => sum + s.base_stat, 0)}
                 </p>
-                <p className="text-gray-700 dark:text-gray-300">
-                  <span className="font-medium">Height:</span> {(pokemon2.height / 10).toFixed(1)}m
+                <p className="text-gray-900 mb-1">
+                  Height: {(pokemon2.height / 10).toFixed(1)}m
                 </p>
-                <p className="text-gray-700 dark:text-gray-300">
-                  <span className="font-medium">Weight:</span> {(pokemon2.weight / 10).toFixed(1)}kg
+                <p className="text-gray-900">
+                  Weight: {(pokemon2.weight / 10).toFixed(1)}kg
                 </p>
               </div>
             </div>

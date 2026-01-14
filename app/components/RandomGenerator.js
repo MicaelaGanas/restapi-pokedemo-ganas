@@ -9,10 +9,11 @@ export default function RandomGenerator({ onRandomSelect, totalPokemon }) {
   return (
     <button
       onClick={handleRandom}
-      className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors shadow-md"
+      className="retro-button px-6 py-3 bg-yellow-400 text-black font-bold uppercase hover:bg-yellow-300 flex items-center gap-2"
       aria-label="Get random Pokémon"
     >
-      🎲 Surprise Me!
+      <span className="text-xl">🎲</span>
+      Surprise Me!
     </button>
   );
 }

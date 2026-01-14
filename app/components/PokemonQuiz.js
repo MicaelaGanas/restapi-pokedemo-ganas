@@ -88,53 +88,55 @@ export default function PokemonQuiz() {
 
   if (!gameStarted) {
     return (
-      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg text-center">
-        <h2 className="text-3xl font-bold mb-4 text-gray-800 dark:text-white">
-          🎮 Who's That Pokémon?
+      <div className="bg-white border-8 border-black pixel-shadow p-8 text-center">
+        <h2 className="pixel-font text-4xl mb-6 text-gray-900">
+          🎮 WHO'S THAT
         </h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-6">
-          Test your Pokémon knowledge! Guess the name from the silhouette.
+        <h2 className="pixel-font text-4xl mb-8 text-red-600">
+          POKEMON?
+        </h2>
+        <p className="font-bold text-lg text-gray-700 mb-8">
+          Test your Pokémon knowledge! Guess from the silhouette.
         </p>
         <button
           onClick={startGame}
-          className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-xl transition-colors shadow-lg"
+          className="retro-button px-8 py-4 bg-red-500 text-white font-bold text-2xl uppercase hover:bg-red-600"
         >
-          Start Quiz
+          🎲 Start Quiz
         </button>
       </div>
     );
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-          🎮 Who's That Pokémon?
+    <div className="bg-white border-8 border-black pixel-shadow p-8">
+      <div className="flex justify-between items-center mb-8 pb-4 border-b-4 border-black">
+        <h2 className="pixel-font text-3xl text-gray-900">
+          🎮 QUIZ
         </h2>
-        <div className="text-right">
-          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+        <div className="text-center">
+          <div className="pixel-font text-3xl text-red-600">
             {score} / {total}
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">
-            {total > 0 ? `${Math.round((score / total) * 100)}% correct` : "Score"}
+          <div className="font-bold text-gray-700 mt-1">
+            {total > 0 ? `${Math.round((score / total) * 100)}% CORRECT` : "SCORE"}
           </div>
         </div>
       </div>
 
       {loading ? (
-        <div className="text-center py-12">
-          <div className="animate-spin h-16 w-16 border-4 border-blue-600 border-t-transparent rounded-full mx-auto"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading next Pokémon...</p>
+        <div className="text-center py-16">
+          <div className="pixel-font text-2xl text-gray-900">LOADING...</div>
         </div>
       ) : currentPokemon ? (
         <>
-          <div className="mb-6 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg p-8 flex justify-center items-center min-h-[300px]">
+          <div className="mb-8 bg-blue-500 border-8 border-black pixel-shadow p-8 flex justify-center items-center min-h-[320px]">
             <div className="relative h-48 w-48">
               <Image
                 src={currentPokemon.sprites.front_default}
                 alt="Mystery Pokémon"
                 fill
-                className={`object-contain transition-all duration-300 ${
+                className={`object-contain pixelated transition-all duration-300 ${
                   isRevealed ? "" : "brightness-0"
                 }`}
                 unoptimized
@@ -144,28 +146,28 @@ export default function PokemonQuiz() {
 
           {feedback && (
             <div
-              className={`mb-4 p-4 rounded-lg text-center font-bold text-lg ${
+              className={`mb-6 p-4 border-4 border-black font-bold text-lg text-center pixel-font text-xl ${
                 feedback.startsWith("✅")
-                  ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200"
-                  : "bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200"
+                  ? "bg-green-300 text-green-900"
+                  : "bg-red-300 text-red-900"
               }`}
             >
               {feedback}
             </div>
           )}
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 mb-6">
             {options.map((pokemon) => (
               <button
                 key={pokemon.id}
                 onClick={() => handleAnswer(pokemon)}
                 disabled={isRevealed}
-                className={`p-4 rounded-lg font-semibold capitalize transition-all ${
+                className={`retro-button p-4 font-bold uppercase capitalize transition-all text-lg ${
                   isRevealed && pokemon.id === currentPokemon.id
-                    ? "bg-green-500 text-white ring-4 ring-green-300"
+                    ? "bg-green-400 text-black"
                     : isRevealed
-                    ? "bg-gray-300 dark:bg-gray-700 text-gray-500 cursor-not-allowed"
-                    : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-blue-500 hover:text-white"
+                    ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                    : "bg-yellow-400 text-black hover:bg-yellow-300"
                 }`}
               >
                 {pokemon.name}
@@ -173,19 +175,19 @@ export default function PokemonQuiz() {
             ))}
           </div>
 
-          <div className="mt-6 flex gap-4">
+          <div className="flex gap-4">
             <button
               onClick={generateQuiz}
               disabled={isRevealed}
-              className="flex-1 px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors"
+              className="retro-button flex-1 px-4 py-3 bg-purple-500 text-white font-bold uppercase hover:bg-purple-600 disabled:bg-gray-400"
             >
-              Skip
+              ⏭️ Skip
             </button>
             <button
               onClick={resetGame}
-              className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
+              className="retro-button flex-1 px-4 py-3 bg-red-500 text-white font-bold uppercase hover:bg-red-600"
             >
-              End Game
+              ❌ End Game
             </button>
           </div>
         </>

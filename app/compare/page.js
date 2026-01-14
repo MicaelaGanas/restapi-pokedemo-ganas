@@ -7,8 +7,10 @@ export const metadata = {
 
 export default function ComparePage() {
   return (
-    <div className="container mx-auto p-6 max-w-4xl">
-      <PokemonComparison />
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="container mx-auto max-w-4xl">
+        <PokemonComparison />
+      </div>
     </div>
   );
 }

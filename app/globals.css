@@ -1,27 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #f3f4f6;
-  --foreground: #171717;
-}
-
-.dark {
-  --background: #111827;
-  --foreground: #f9fafb;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --background: #111827;
-    --foreground: #f9fafb;
-  }
+  --pokemon-red: #FF0000;
+  --pokemon-blue: #3B4CCA;
+  --pokemon-yellow: #FFDE00;
+  --pokemon-bg: #F8F8F8;
+  --pokemon-dark: #2A2A2A;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background: #F0F0F0;
+  color: #2A2A2A;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.pixel-font {
+  font-family: 'Press Start 2P', cursive;
 }
 
 /* Smooth scrolling */
@@ -29,7 +24,34 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Pixel border style */
+.pixel-border {
+  border: 4px solid #2A2A2A;
+  box-shadow: 
+    4px 4px 0 rgba(0, 0, 0, 0.2),
+    inset 0 0 0 2px #fff;
+}
+
+.pixel-shadow {
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
 /* Custom animations */
+@keyframes pixelBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pixelShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -41,24 +63,84 @@ html {
   }
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.animate-pixelBounce {
+  animation: pixelBounce 1s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+.animate-pixelShake:hover {
+  animation: pixelShake 0.5s ease-in-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Retro button style */
+.retro-button {
+  border: 4px solid #2A2A2A;
+  box-shadow: 
+    4px 4px 0 #2A2A2A,
+    inset 0 0 0 2px #fff;
+  transition: all 0.1s;
+}
+
+.retro-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 
+    2px 2px 0 #2A2A2A,
+    inset 0 0 0 2px #fff;
+}
+
+.retro-button:active {
+  transform: translate(4px, 4px);
+  box-shadow: 
+    0 0 0 #2A2A2A,
+    inset 0 0 0 2px #fff;
+}
+
+/* Pokemon type colors */
+.type-normal { background-color: #A8A878; }
+.type-fire { background-color: #F08030; }
+.type-water { background-color: #6890F0; }
+.type-electric { background-color: #F8D030; }
+.type-grass { background-color: #78C850; }
+.type-ice { background-color: #98D8D8; }
+.type-fighting { background-color: #C03028; }
+.type-poison { background-color: #A040A0; }
+.type-ground { background-color: #E0C068; }
+.type-flying { background-color: #A890F0; }
+.type-psychic { background-color: #F85888; }
+.type-bug { background-color: #A8B820; }
+.type-rock { background-color: #B8A038; }
+.type-ghost { background-color: #705898; }
+.type-dragon { background-color: #7038F8; }
+.type-dark { background-color: #705848; }
+.type-steel { background-color: #B8B8D0; }
+.type-fairy { background-color: #EE99AC; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0F0F0;
+  border: 2px solid #2A2A2A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+  border: 2px solid #2A2A2A;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #CC0000;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 4px dashed #FFDE00;
+  outline-offset: 4px;
 }
 
 /* Apply animations to cards */
@@ -112,11 +194,28 @@ html {
 
 /* Focus styles for accessibility */
 *:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
+  outline: 4px dashed #FFDE00;
+  outline-offset: 4px;
 }
 
 /* Transitions for interactive elements */
 button, a, input, select {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease;
+}
+
+/* Pixel corners */
+.pixel-corners {
+  clip-path: polygon(
+    0 8px, 8px 8px, 8px 0,
+    calc(100% - 8px) 0, calc(100% - 8px) 8px, 100% 8px,
+    100% calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) 100%,
+    8px 100%, 8px calc(100% - 8px), 0 calc(100% - 8px)
+  );
+}
+
+/* Pixelated images for retro feel */
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }

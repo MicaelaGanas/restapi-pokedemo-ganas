@@ -34,39 +34,59 @@ export default function FavoritesPage() {
   }, []);
 
   return (
-    <div className="container mx-auto p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
-          ❤️ My Favorite Pokémon
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          {favorites.length === 0
-            ? "You haven't added any favorites yet. Click the heart icon on any Pokémon card to add them!"
-            : `You have ${favorites.length} favorite Pokémon`}
-        </p>
-      </div>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="container mx-auto max-w-6xl">
+        <div className="mb-12 bg-red-500 border-8 border-black pixel-shadow p-8 relative overflow-hidden">
+          {/* Background pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="grid grid-cols-8 gap-8 p-8">
+              {[...Array(24)].map((_, i) => (
+                <div key={i} className="text-6xl">⚪</div>
+              ))}
+            </div>
+          </div>
 
-      {loading ? (
-        <LoadingSkeleton count={favorites.length} />
-      ) : pokemonData.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {pokemonData.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
-          ))}
+          <div className="relative z-10">
+            <h1 className="pixel-font text-5xl mb-6 text-yellow-400 drop-shadow-[6px_6px_0_rgba(0,0,0,1)]">
+              ❤️ MY FAVORITES
+            </h1>
+            <div className="flex items-center gap-4">
+              <div className="bg-white border-4 border-black px-6 py-3 font-bold text-2xl text-red-600">
+                {favorites.length}
+              </div>
+              <p className="text-xl font-bold text-white drop-shadow-[4px_4px_0_rgba(0,0,0,1)]">
+                {favorites.length === 0
+                  ? "No favorites yet! Click the heart icon to add Pokémon."
+                  : favorites.length === 1 ? "Favorite Pokémon" : "Favorite Pokémon"}
+              </p>
+            </div>
+          </div>
         </div>
-      ) : (
-        <div className="text-center py-12">
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
-            Your favorites list is empty
-          </p>
-          <a
-            href="/"
-            className="inline-block px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
-          >
-            Explore Pokémon
-          </a>
-        </div>
-      )}
+
+        {loading ? (
+          <LoadingSkeleton count={favorites.length} />
+        ) : favorites.length === 0 ? (
+          <div className="text-center bg-yellow-400 border-8 border-black pixel-shadow p-16">
+            <p className="pixel-font text-4xl text-gray-900 mb-6">❌ NO FAVORITES</p>
+            <p className="text-xl font-bold text-gray-900 mb-8">Go back to home and add some Pokémon to your favorites!</p>
+            <a href="/" className="retro-button px-8 py-4 bg-red-500 text-white font-bold uppercase text-lg hover:bg-red-600">
+              ⬅️ Go Home
+            </a>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {pokemonData.map((p, index) => (
+              <div
+                key={p.id}
+                className="animate-fadeIn"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
+                <PokemonCard pokemon={p} />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

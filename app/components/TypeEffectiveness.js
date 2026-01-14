@@ -24,7 +24,8 @@ const TYPE_CHART = {
 export default function TypeEffectiveness({ types }) {
   if (!types || types.length === 0) return null;
 
-  const mainType = types[0].type.name;
+  // Handle both string arrays and object arrays
+  const mainType = typeof types[0] === 'string' ? types[0] : types[0].type.name;
   const effectiveness = TYPE_CHART[mainType] || { weak: [], resist: [], immune: [] };
 
   return (

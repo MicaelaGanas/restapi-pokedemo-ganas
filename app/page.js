@@ -1,5 +1,6 @@
 import ClientWrapper from "./components/ClientWrapper";
 import ErrorBoundary from "./components/ErrorBoundary";
+import HeroBanner from "./components/HeroBanner";
 
 async function fetchPokemon(limit = 151) {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`, {
@@ -27,8 +28,9 @@ export default async function Page() {
 
   return (
     <ErrorBoundary>
-      <main className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
-        <div className="container mx-auto p-6">
+      <main className="min-h-screen bg-gray-100">
+        <div className="container mx-auto px-4 py-8">
+          <HeroBanner />
           <ClientWrapper data={data} />
         </div>
       </main>
