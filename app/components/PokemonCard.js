@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import FavoritesManager from "./FavoritesManager";
 import TypeEffectiveness from "./TypeEffectiveness";
 import Image from "next/image";
 
 export default function PokemonCard({ pokemon }) {
+  const router = useRouter();
   const [showStats, setShowStats] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
@@ -49,11 +51,24 @@ export default function PokemonCard({ pokemon }) {
   const mainType = pokemon.types[0]?.type.name || "normal";
   const headerColor = getTypeBgColor(mainType);
 
+  const handleCardClick = (e) => {
+    // Don't navigate if clicking on buttons or favorite manager
+    if (e.target.closest('button') || e.target.closest('[data-favorites-manager]')) {
+      return;
+    }
+    router.push(`/pokemon/${pokemon.id}`);
+  };
+
   return (
-    <div className="relative bg-white border-8 border-black pixel-shadow hover:translate-y-[-4px] transition-transform animate-fadeIn">
+    <div 
+      onClick={handleCardClick}
+      className="relative bg-white border-8 border-black pixel-shadow hover:translate-y-[-4px] transition-transform animate-fadeIn cursor-pointer"
+    >
       {/* Header */}
       <div className={`${headerColor} border-b-5 border-black p-7 relative`}>
-        <FavoritesManager pokemonId={pokemon.id} pokemonName={pokemon.name} />
+        <div data-favorites-manager>
+          <FavoritesManager pokemonId={pokemon.id} pokemonName={pokemon.name} />
+        </div>
         
         {/* ID Badge */}
         <div className="absolute top-4 left-4">
@@ -113,7 +128,10 @@ export default function PokemonCard({ pokemon }) {
 
         {/* Stats Toggle Button */}
         <button
-          onClick={() => setShowStats(!showStats)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowStats(!showStats);
+          }}
           className="retro-button w-full bg-red-500 text-white font-bold py-3 mb-3 uppercase hover:bg-red-600"
         >
           {showStats ? '▲ Hide Stats' : '▼ View Stats'}
@@ -148,7 +166,10 @@ export default function PokemonCard({ pokemon }) {
 
         {/* Details Toggle Button */}
         <button
-          onClick={() => setShowDetails(!showDetails)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowDetails(!showDetails);
+          }}
           className="retro-button w-full bg-blue-500 text-white font-bold py-3 uppercase hover:bg-blue-600"
         >
           {showDetails ? '▲ Hide Details' : '▼ Type Info'}

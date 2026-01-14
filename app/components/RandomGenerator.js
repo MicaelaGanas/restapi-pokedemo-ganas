@@ -1,9 +1,12 @@
 "use client";
+import { useRouter } from "next/navigation";
 
-export default function RandomGenerator({ onRandomSelect, totalPokemon }) {
+export default function RandomGenerator({ totalPokemon }) {
+  const router = useRouter();
+
   const handleRandom = () => {
     const randomId = Math.floor(Math.random() * totalPokemon) + 1;
-    onRandomSelect(randomId);
+    router.push(`/pokemon/${randomId}`);
   };
 
   return (

@@ -89,23 +89,6 @@ export default function ClientWrapper({ data }) {
     }, 300);
   };
 
-  const handleRandomSelect = async (randomId) => {
-    try {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
-      const pokemon = await res.json();
-      
-      // Check if already in list
-      if (!allPokemon.find((p) => p.id === pokemon.id)) {
-        setAllPokemon((prev) => [...prev, pokemon]);
-      }
-      
-      // Filter to show only this pokemon
-      setQuery(pokemon.name);
-    } catch (error) {
-      console.error("Failed to fetch random Pokémon:", error);
-    }
-  };
-
   const clearFilters = () => {
     setQuery("");
     setTypeFilter("all");
@@ -117,7 +100,7 @@ export default function ClientWrapper({ data }) {
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap gap-4 items-center justify-between bg-white border-8 border-black pixel-shadow p-4">
-        <RandomGenerator onRandomSelect={handleRandomSelect} totalPokemon={898} />
+        <RandomGenerator totalPokemon={898} />
         
         <div className="flex gap-3">
           <button
