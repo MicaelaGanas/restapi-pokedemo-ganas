@@ -52,7 +52,7 @@ export default function PokemonCard({ pokemon }) {
   return (
     <div className="relative bg-white border-8 border-black pixel-shadow hover:translate-y-[-4px] transition-transform animate-fadeIn">
       {/* Header */}
-      <div className={`${headerColor} border-b-4 border-black p-4 relative`}>
+      <div className={`${headerColor} border-b-5 border-black p-7 relative`}>
         <FavoritesManager pokemonId={pokemon.id} pokemonName={pokemon.name} />
         
         {/* ID Badge */}

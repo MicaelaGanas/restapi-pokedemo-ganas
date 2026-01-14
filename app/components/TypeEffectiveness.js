@@ -29,35 +29,51 @@ export default function TypeEffectiveness({ types }) {
   const effectiveness = TYPE_CHART[mainType] || { weak: [], resist: [], immune: [] };
 
   return (
-    <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg text-sm">
-      <h4 className="font-semibold mb-2 text-gray-800 dark:text-gray-200">Type Effectiveness</h4>
+    <div className="mt-4 bg-white border-4 border-black pixel-shadow">
+      <div className="bg-red-600 border-b-4 border-black p-3">
+        <h4 className="pixel-font text-sm text-yellow-400 drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">⚡ TYPE MATCHUPS</h4>
+      </div>
       
-      {effectiveness.weak.length > 0 && (
-        <div className="mb-2">
-          <span className="font-medium text-red-600 dark:text-red-400">Weak to: </span>
-          <span className="text-gray-700 dark:text-gray-300 capitalize">
-            {effectiveness.weak.join(", ")}
-          </span>
-        </div>
-      )}
-      
-      {effectiveness.resist.length > 0 && (
-        <div className="mb-2">
-          <span className="font-medium text-green-600 dark:text-green-400">Resists: </span>
-          <span className="text-gray-700 dark:text-gray-300 capitalize">
-            {effectiveness.resist.join(", ")}
-          </span>
-        </div>
-      )}
-      
-      {effectiveness.immune.length > 0 && (
-        <div>
-          <span className="font-medium text-blue-600 dark:text-blue-400">Immune to: </span>
-          <span className="text-gray-700 dark:text-gray-300 capitalize">
-            {effectiveness.immune.join(", ")}
-          </span>
-        </div>
-      )}
+      <div className="p-4 space-y-3">
+        {effectiveness.weak.length > 0 && (
+          <div className="bg-red-50 p-3">
+            <span className="font-black text-red-700 uppercase text-sm block mb-2">⬇️ Weak To:</span>
+            <div className="flex flex-wrap gap-2">
+              {effectiveness.weak.map(type => (
+                <span key={type} className="bg-red-500 text-white px-3 py-1 font-bold text-xs uppercase border-2 border-black">
+                  {type}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {effectiveness.resist.length > 0 && (
+          <div className="bg-green-50 p-3">
+            <span className="font-black text-green-700 uppercase text-sm block mb-2">🛡️ Resists:</span>
+            <div className="flex flex-wrap gap-2">
+              {effectiveness.resist.map(type => (
+                <span key={type} className="bg-green-500 text-white px-3 py-1 font-bold text-xs uppercase border-2 border-black">
+                  {type}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {effectiveness.immune.length > 0 && (
+          <div className="bg-blue-50 p-3">
+            <span className="font-black text-blue-700 uppercase text-sm block mb-2">🛑 Immune To:</span>
+            <div className="flex flex-wrap gap-2">
+              {effectiveness.immune.map(type => (
+                <span key={type} className="bg-blue-500 text-white px-3 py-1 font-bold text-xs uppercase border-2 border-black">
+                  {type}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
