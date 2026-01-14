@@ -8,15 +8,37 @@ export default function BackgroundAudio() {
   useEffect(() => {
     const audioEl = audioRef.current;
     if (!audioEl) return;
+
+    const storedMuted = typeof window !== "undefined" && localStorage.getItem("bgMusicMuted") === "true";
     audioEl.volume = 0.4;
+    audioEl.muted = storedMuted;
+
     const tryPlay = async () => {
+      if (audioEl.muted) return;
       try {
         await audioEl.play();
       } catch (err) {
         console.warn("Background audio autoplay was blocked by the browser.");
       }
     };
+
+    const handleToggle = (event) => {
+      const muted = event.detail?.muted ?? false;
+      audioEl.muted = muted;
+      localStorage.setItem("bgMusicMuted", muted ? "true" : "false");
+      if (muted) {
+        audioEl.pause();
+      } else {
+        tryPlay();
+      }
+    };
+
+    window.addEventListener("bg-music-toggle", handleToggle);
     tryPlay();
+
+    return () => {
+      window.removeEventListener("bg-music-toggle", handleToggle);
+    };
   }, []);
 
   return (
@@ -30,6 +52,4 @@ export default function BackgroundAudio() {
       aria-hidden="true"
     />
   );
-
-  
 }

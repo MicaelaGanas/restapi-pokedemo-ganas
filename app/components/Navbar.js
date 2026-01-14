@@ -1,12 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [musicMuted, setMusicMuted] = useState(false);
+
+  useEffect(() => {
+    const stored = typeof window !== "undefined" && localStorage.getItem("bgMusicMuted") === "true";
+    setMusicMuted(stored);
+  }, []);
+
+  const toggleMusic = () => {
+    const next = !musicMuted;
+    setMusicMuted(next);
+    window.dispatchEvent(new CustomEvent("bg-music-toggle", { detail: { muted: next } }));
+  };
 
   const isActive = (path) => pathname === path;
 
@@ -47,6 +59,15 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <button
+              onClick={toggleMusic}
+              className={`retro-button px-4 lg:px-5 py-2 lg:py-3 font-bold uppercase tracking-wide text-sm lg:text-base ${
+                musicMuted ? 'bg-gray-300 text-black' : 'bg-green-400 text-black'
+              }`}
+              aria-label={musicMuted ? "Turn music on" : "Turn music off"}
+            >
+              {musicMuted ? "🔇 Music" : "🔊 Music"}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -76,6 +97,15 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <button
+              onClick={toggleMusic}
+              className={`block w-full retro-button text-left px-4 py-3 font-bold uppercase text-sm ${
+                musicMuted ? 'bg-gray-300 text-black' : 'bg-green-400 text-black'
+              }`}
+              aria-label={musicMuted ? "Turn music on" : "Turn music off"}
+            >
+              {musicMuted ? "🔇 Music Off" : "🔊 Music On"}
+            </button>
           </div>
         )}
       </div>
