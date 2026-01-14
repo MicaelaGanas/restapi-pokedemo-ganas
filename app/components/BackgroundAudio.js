@@ -22,6 +22,13 @@ export default function BackgroundAudio() {
       }
     };
 
+    const unlockOnInteraction = () => {
+      tryPlay();
+      window.removeEventListener("pointerdown", unlockOnInteraction);
+      window.removeEventListener("keydown", unlockOnInteraction);
+      window.removeEventListener("touchstart", unlockOnInteraction);
+    };
+
     const handleToggle = (event) => {
       const muted = event.detail?.muted ?? false;
       audioEl.muted = muted;
@@ -34,10 +41,16 @@ export default function BackgroundAudio() {
     };
 
     window.addEventListener("bg-music-toggle", handleToggle);
+    window.addEventListener("pointerdown", unlockOnInteraction, { once: true });
+    window.addEventListener("keydown", unlockOnInteraction, { once: true });
+    window.addEventListener("touchstart", unlockOnInteraction, { once: true });
     tryPlay();
 
     return () => {
       window.removeEventListener("bg-music-toggle", handleToggle);
+      window.removeEventListener("pointerdown", unlockOnInteraction);
+      window.removeEventListener("keydown", unlockOnInteraction);
+      window.removeEventListener("touchstart", unlockOnInteraction);
     };
   }, []);
 
